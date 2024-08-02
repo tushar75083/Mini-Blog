@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="col-sm-8 mx-auto">
+    
+    <form action="" method="post" class="shadow-lg p-3 my-4" novalidate>
+        <h2 class=" text-center">SignUp Page</h2>
+        <hr>
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+         {% for fm in form %}
+         <div class="form-group">
+            {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}} </small> 
+         {% endfor %}
+         </div>
+            
+         <input type="submit" value="Submit" class="btn btn-primary mt-2">
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+            {% endfor %}
+        {% endif %}
+
+    </form>
+</div>
+
+
+{% endblock content %}
+
+
